@@ -76,15 +76,6 @@ void loop() {
     }
     advance_state=advance;
   }
-  if((pattern_pos % 3)==0)
-  {
-    digitalWrite(13,HIGH);
-  }
-  else
-  {
-    digitalWrite(13,LOW);
-    
-  }
 }
 
 void display()
@@ -92,6 +83,14 @@ void display()
   display_pos = display_pos % 8;
   int pattern_display_pos=(display_pos+pattern_pos) % pattern_size;
   byte pattern_data=pattern[pattern_display_pos];
+  if((display_pos<3) && (pattern_data==0))
+  {
+    digitalWrite(13,HIGH);    
+  }
+  else
+  {
+    digitalWrite(13,LOW);
+  }
   digitalWrite(cols[display_pos],HIGH);  
   for (int row=0;row < 8; row++)
   {
